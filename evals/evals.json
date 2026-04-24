@@ -1,0 +1,20 @@
+{
+  "skill_name": "deep-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我调研一下 AI Agent 框架的现状，主要关注开源生态",
+      "expected_output": "包含至少 5 个框架的对比分析报告，有来源引用，覆盖技术架构/社区活跃度/适用场景等维度"
+    },
+    {
+      "id": 2,
+      "prompt": "Vercel Workflows vs Temporal vs Inngest 哪个更适合做 Agent 编排",
+      "expected_output": "三方对比报告，按技术架构/社区/定价/适用场景维度分析，有明确推荐和理由"
+    },
+    {
+      "id": 3,
+      "prompt": "摸个底，MCP 协议现在生态怎么样了",
+      "expected_output": "MCP 生态全景报告，覆盖主要实现/社区活跃度/采用趋势/已知局限"
+    }
+  ]
+}
