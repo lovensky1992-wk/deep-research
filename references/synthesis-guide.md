@@ -39,10 +39,18 @@ Where sources disagree, present both sides and your evidence-based judgment on w
 
 (Extract all concrete numbers/statistics into one scannable table)
 
-## 5. Conclusions & Recommendations
+## 5. Cross-Dimensional Synthesis
+This is NOT a summary of previous sections. This section generates NEW insights by intersecting findings across dimensions — patterns that only become visible when you cross-reference multiple axes:
+- **Temporal × Competitive**: How did historical decisions create today's competitive advantages or burdens? (e.g., a technical choice from 2 years ago that now locks out competitors, or an early shortcut that became technical debt)
+- **Technical × Business**: Where do technical strengths create business opportunities, or technical limitations constrain commercial potential?
+- **Community × Strategy**: How does user/community sentiment align or conflict with the strategic direction?
+
+Present 2-4 cross-dimensional insights, each with a clear "A × B → therefore C" structure. These should be non-obvious conclusions that a reader wouldn't get from any single section alone.
+
+## 6. Conclusions & Recommendations
 Evidence-based conclusions and actionable recommendations.
 
-## 6. Limitations
+## 7. Limitations
 - Information gaps
 - Potential biases (e.g., English-language sources overrepresented)
 - Timeliness caveats
@@ -65,6 +73,12 @@ Evidence-based conclusions and actionable recommendations.
 8. **Chinese body, English terms** — write in Chinese, keep technical terms in English
 9. **Length targets** — quick: 1500-3000 chars / standard: 3000-6000 chars / deep: 6000-12000 chars
 10. **Actionable recommendations** — Conclusions section must include specific, actionable items (not just "X is worth learning from" but "specifically do Y because Z, expected effect: W"). Each recommendation should reference the evidence that supports it
+11. **Competitive analysis routing** — when a dimension involves competitive/comparative analysis, first assess the competitive landscape and route accordingly:
+    - **Scenario A (no direct competitor)**: Skip head-to-head comparison. Instead analyze: why no competitor exists (new category? high barrier? small market?), where future competitors might emerge, and what indirect substitutes or predecessors serve as reference points
+    - **Scenario B (1-2 competitors)**: Deep-dive each competitor individually (≥1500 chars per competitor), covering user switching reasons, architectural differences, and ecosystem positioning
+    - **Scenario C (3+ competitors)**: Select 3-5 most representative for detailed comparison; group the rest in a brief landscape overview. Do NOT give every competitor equal airtime — weight by relevance to the research question
+    - In ALL scenarios, include **user perspective**: real user sentiment (forums, reviews, social media) on why they chose one over another, not just feature-matrix differences
+12. **Cross-dimensional synthesis quality** — the Cross-Dimensional Synthesis section (§5) must contain genuinely intersected insights, not restatements. Each insight must reference findings from ≥2 different dimension sections with explicit "because X (§2.1) + Y (§2.3), therefore Z" reasoning
 
 ## Offline-Only Reminder
 

@@ -170,7 +170,8 @@ bash scripts/skill-verify.sh deep-research <report-file> [level]
 | No fabrication | Every citation must come from actual search results |
 | **Fact/inference marking** | deep: every claim marked `[已确认]`/`[分析推断]`. standard: at least key claims marked |
 | **Narrative quality** | Each dimension section has context→current state→trajectory arc, not just feature lists |
-| **Actionability** | Recommendations section has specific actions with expected effects, not generic "worth learning" |
+| **Competitive analysis** | If a dimension is comparative: Scenario A/B/C routing applied (see synthesis-guide rule 11) |
+| **Cross-dimensional synthesis** | §5 contains ≥2 genuinely intersected insights (not restatements), each referencing ≥2 dimension sections |
 
 ## Integration Notes
 
