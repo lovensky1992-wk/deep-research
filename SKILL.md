@@ -28,6 +28,8 @@ Two-phase architecture: **Phase 1 casts a wide net and persists everything local
 | `depth` | quick · standard · deep | standard |
 | `lang` | Report language | zh |
 | `focus` | 技术 · 商业 · 用户 · 全面 | 全面 |
+| `mode`  | dimensions · hv (横纵) | auto    |
+| `format`| md · pdf               | md      |
 
 Depth controls parallelism and rigor:
 
@@ -36,6 +38,26 @@ Depth controls parallelism and rigor:
 | quick | 3-5 min | 2-3 | skip | 5 |
 | standard | 10-15 min | 3-5 | optional | 10 |
 | deep | 20-30 min | 5-7 | required | 15 |
+
+### Mode — 研究结构
+
+| Mode | 适用场景 | 结构 |
+|------|---------|------|
+| dimensions | 多实体对比、行业扫描、选型分析、多维度交叉 | N 个平行维度 → 交叉综合 |
+| hv (横纵) | 单一实体深度研究（一个产品/公司/概念/人物） | 纵向时间线 → 横向竞品切面 → 交汇洞察 |
+| auto | 自动检测：单一实体 → hv；多实体/行业/选型 → dimensions | — |
+
+`mode=auto` 判断逻辑：
+- 研究对象是**一个**明确的产品/公司/概念/人物 → `hv`
+- 涉及多个实体对比、行业全景、方案选型 → `dimensions`
+- 用户可随时显式指定覆盖自动检测
+
+### Format — 输出格式
+
+| Format | 说明 |
+|--------|------|
+| md | 默认，输出 Markdown 报告 |
+| pdf | 输出排版精美的 PDF（自动调用 `scripts/md_to_pdf.py`，依赖 WeasyPrint） |
 
 ## Decision Tree
 
@@ -87,6 +109,10 @@ temp/research/{topic-slug}/
 
 Parse the user's question. Identify entities (people, companies, products, communities, technologies). Design a search strategy:
 
+0. Identify research mode and object type:
+   - **研究模式**: `hv` or `dimensions` (auto-detect or user-specified)
+   - **对象类型** (hv 模式): 产品 | 公司 | 概念 | 人物 | 其他
+   - Write both into `plan.md` header
 1. Define 3-5 search dimensions (e.g., technical architecture / community sentiment / business model / competitive landscape / recent developments)
 2. For each dimension, plan 2-3 specific search queries
 3. Identify best information sources per dimension (GitHub, X, tech blogs, official docs, forums)
@@ -103,6 +129,16 @@ Parse the user's question. Identify entities (people, companies, products, commu
 **Goal: turn web knowledge into local files. Do not draw conclusions — just collect.**
 
 Spawn Scout sub-agents in parallel (`sessions_spawn`, `mode="run"`, `cleanup="delete"`). Each Scout handles one search dimension using the prompt template in `references/scout-prompt-template.md`.
+
+**hv 模式 Scout 分工**（mode=hv 时替代通用维度划分）：
+
+| Scout | 职责 | 数量 |
+|-------|------|------|
+| 纵向 Scout | 起源追溯、创始人/团队背景、发展历程关键节点、版本迭代、融资/战略转向、危机事件。用叙事故事串联，追问每个节点的决策逻辑 | 1-2 |
+| 横向 Scout | 竞品识别与场景路由(A/B/C)、各竞品特点与用户口碑、行业对比评测、市场份额、生态位分析 | 1-2 |
+| 补充 Scout | 创始人深度背景、用户社区讨论(GitHub/Reddit/X/知乎)、行业环境变化 | 0-1 (deep 才需要) |
+
+纵向 Scout 使用 `references/scout-prompt-template.md` 的 hv-longitudinal 变体；横向 Scout 使用 hv-cross-sectional 变体。
 
 Each Scout produces:
 - `sources/{nn}-{dimension-slug}.md` — structured findings
@@ -139,6 +175,11 @@ Spawn a Critic sub-agent using `references/critic-prompt-template.md`. The Criti
 **If the Critic finds a major gap**: return to Step 1 for targeted supplementary search (max 1 round, gap-only).
 
 ### Step 4 — Deliver
+
+**PDF 输出**（format=pdf 时执行）：
+1. 检查依赖：`pip install weasyprint markdown --break-system-packages`（已装则跳过）
+2. 运行：`python {skill_dir}/scripts/md_to_pdf.py {report.md} {output.pdf} --title "{研究对象}"`
+3. 交付 PDF + MD 双文件
 
 1. Present report highlights to user
 2. Share file location: `temp/research/{topic-slug}/`

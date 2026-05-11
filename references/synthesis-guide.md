@@ -61,10 +61,90 @@ Evidence-based conclusions and actionable recommendations.
 (Complete list. Never truncate.)
 ```
 
+## HV 模式报告模板（mode=hv 时使用此模板替代上方通用模板）
+
+```markdown
+# {研究对象}
+
+> 研究时间：{timestamp} | 所属领域：{field} | 对象类型：{type} | 来源数量：{source_count}
+
+## Executive Summary
+200-400 字。核心发现和判断。只读这一段的人也能 walk away informed。
+
+## 一句话定义
+用一句话说清楚这个东西是什么。不要百科式定义，用人话。
+
+## 纵向分析：从诞生到当下
+
+### 起源追溯
+诞生背景、创始人/核心推动者、当时的行业环境、灵感来源。
+
+### [阶段一名称]：[时间范围]
+叙事展开，含关键事件和决策逻辑。
+
+### [阶段二名称]：[时间范围]
+...
+
+（按自然阶段划分，每个阶段有核心特征和核心矛盾。纵向总篇幅 6000-15000 字。）
+
+## 横向分析：竞争图谱
+
+### 竞争格局判断
+场景 A/B/C 路由及理由。
+
+### [竞品1名称]
+独立分析（≥1500 字/个主要竞品）。
+
+### [竞品2名称]
+...
+
+### 生态位分析
+研究对象在赛道版图中的位置。
+
+### 用户视角
+真实用户选择不同产品的理由和口碑。
+
+（横向总篇幅 3000-10000 字）
+
+## 横纵交汇洞察
+
+回答以下五个核心问题：
+
+1. **历史如何塑造了当下的竞争位置**：纵向哪些决策/事件，决定了它今天在横向对比中的位置？
+2. **竞品的纵向对比**：主要竞品放到时间线上看，起源和演变有什么不同？这些不同如何导致了今天各自的特点？
+3. **优势的历史根源**：今天的每个核心优势，追溯到历史上的哪个节点或决策？
+4. **劣势的历史根源**：今天的每个核心劣势，追溯到哪个历史决策？当初的"好决策"有没有变成包袱？
+5. **未来推演（三剧本）**：
+   - 🟢 **最可能的**：基于当前趋势的惯性延伸，具体描述 1-2 年后的状态
+   - 🔴 **最危险的**：哪些风险因素可能颠覆当前格局，触发条件是什么
+   - 🟡 **最乐观的**：哪些条件成立时能实现最大突破
+   每个剧本须有具体的事实/逻辑支撑，不是空想。
+
+（交汇总篇幅 1500-3000 字）
+
+### 文化升维（可选）
+如果自然关联到更大的文化/哲学/历史参照物，可以引入。不是硬凑的升华，是"聊着聊着自然想到了"的感觉。例：讨论技术路线锁定时引用 QWERTY 键盘效应；讨论开源策略时对比 Linux vs Unix 战争。🔴 禁止强行拔高、禁止"正如XX所说"的引用体。
+
+## 信息来源
+[1] {title} — {URL} ({date})
+[2] ...
+（完整列表，不可截断）
+```
+
+### HV 模式篇幅总览
+
+| 部分 | 字数范围 | 说明 |
+|-----|---------|------|
+| 纵向分析 | 6,000 - 15,000 字 | 报告主体，叙事故事体，不要蜻蜓点水 |
+| 横向分析 | 3,000 - 10,000 字 | 视竞品数量调整，每个主要竞品≥1500字 |
+| 横纵交汇 | 1,500 - 3,000 字 | 精华段，必须产出新判断 |
+| **全文总计** | **10,000 - 30,000 字** | 深度和完整度是价值所在 |
+
 ## Writing Rules
 
+0. **写作风格** — 遵循 `references/writing-style-guide.md` 中的叙事技法和禁区规则。hv 模式下尤其严格执行，dimensions 模式同样适用但可适当放宽节奏感要求。
 1. **Source everything** — tag claims with [N] refs. Mark inferences explicitly as "推断/inference"
-2. **Fact vs inference marking** — for each major claim, prefix with `[已确认]` (confirmed by source) or `[分析推断]` (author’s inference). This is non-negotiable for deep-depth reports
+2. **Fact vs inference marking** — for each major claim, prefix with `[已确认]` (confirmed by source) or `[分析推断]` (author's inference). This is non-negotiable for deep-depth reports
 3. **Preserve precision** — keep original numbers and quotes; don't round or paraphrase away specificity
 4. **Max 3 heading levels** — deeper nesting hurts scannability
 5. **Narrative over lists** — each dimension section should tell a story with a beginning (context/history), middle (current state), and end (trajectory/implications). Do NOT just list features or facts — connect them into a coherent narrative arc. Use bullet lists only for supporting details within the narrative
@@ -79,6 +159,8 @@ Evidence-based conclusions and actionable recommendations.
     - **Scenario C (3+ competitors)**: Select 3-5 most representative for detailed comparison; group the rest in a brief landscape overview. Do NOT give every competitor equal airtime — weight by relevance to the research question
     - In ALL scenarios, include **user perspective**: real user sentiment (forums, reviews, social media) on why they chose one over another, not just feature-matrix differences
 12. **Cross-dimensional synthesis quality** — the Cross-Dimensional Synthesis section (§5) must contain genuinely intersected insights, not restatements. Each insight must reference findings from ≥2 different dimension sections with explicit "because X (§2.1) + Y (§2.3), therefore Z" reasoning
+13. **三剧本推演**（hv 模式必须，dimensions 模式推荐）— 在报告的前瞻/结论部分，给出三个未来剧本（最可能/最危险/最乐观），每个剧本须有明确的事实依据和逻辑链条，不是泛泛的可能性罗列。每个剧本至少引用 1 条来自 evidence.jsonl 的证据
+14. **文化升维**（可选增强）— 在综合洞察中，如果分析对象自然关联到经典商业案例、历史类比、技术哲学等更大的参照系，可以引入。要求：(a) 是"聊着聊着自然想到了"而非硬凑；(b) 类比必须准确、有解释力；(c) 禁止"正如XX所说"的引用体开头
 
 ## Offline-Only Reminder
 
