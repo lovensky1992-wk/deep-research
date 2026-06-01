@@ -97,6 +97,7 @@ temp/research/{topic-slug}/
 │   ├── 02-{dim}.md
 │   └── ...
 ├── evidence.jsonl       ← Structured evidence store (append-only)
+├── claims.jsonl         ← Step 2: load-bearing claims for survival voting
 ├── contradictions.md    ← Cross-source conflicts (if any)
 ├── critic-review.md     ← Step 3: self-review (if applicable)
 ├── report.md            ← Final research report
@@ -163,6 +164,11 @@ Collection is complete when all Scouts return and `sources/` has the expected fi
 2. Cross-check: are the same facts consistent across sources? Log contradictions to `contradictions.md` with your judgment and reasoning
 3. Synthesize `report.md` following `references/synthesis-guide.md` — every factual claim tagged with source references [1][2][3]
 4. Generate `sources-index.md` (URL, summary, credibility rating per source)
+5. **Extract load-bearing claims (for claim survival voting)**: identify the report's *承重* factual claims — the ones the conclusions rest on — and write `claims.jsonl`, one per line:
+   ```json
+   {"claim_id":"C001","claim":"...","evidence_ids":["E003","E011"],"independent_sources":2}
+   ```
+   独立来源数 = 去重后不同域名/平台的支撑来源数(同一信源的多篇转载算 1)。standard 级提取核心 claim 即可,deep 级覆盖所有承重 claim。
 
 ### Step 3 — Self-Review (optional; required for deep)
 
@@ -171,6 +177,13 @@ Spawn a Critic sub-agent using `references/critic-prompt-template.md`. The Criti
 - Source diversity (≥3 different domains/platforms)
 - Missing perspectives
 - Produces `critic-review.md` with per-dimension scores
+
+**Claim 级存活投票(deep 必用,standard 可选)**:除维度打分外,给 Critic 额外注入 `claims.jsonl`,要求其按 critic-prompt-template.md 的「Claim 级存活投票」变体逐条判定(✅存活/⚠️薄弱/❌无支撑),结果追写到 `critic-review.md` 末尾。
+
+**据此修订 report**(存活投票后):
+- ❌ 无支撑 → 从 report.md 滤掉(或改为明确"待验证")
+- ⚠️ 薄弱 → 措辞降级为 `[分析推断]` / "有来源称",不可当确定事实
+- ✅ 存活 → 保留,可标 `[已确认]`
 
 **If the Critic finds a major gap**: return to Step 1 for targeted supplementary search (max 1 round, gap-only).
 
