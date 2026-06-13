@@ -117,6 +117,8 @@ Parse the user's question. Identify entities (people, companies, products, commu
 1. Define 3-5 search dimensions (e.g., technical architecture / community sentiment / business model / competitive landscape / recent developments)
 2. For each dimension, plan 2-3 specific search queries
 3. Identify best information sources per dimension (GitHub, X, tech blogs, official docs, forums)
+   - If X/Twitter evidence arrives as a JSON or JSONL export instead of live search, read `references/social-source-packets.md` before adding it to `evidence.jsonl`.
+   - Treat social-source packets as evidence inputs only; never use this skill to post, reply, DM, follow, upload media, schedule, monitor accounts, trigger webhooks, or run giveaways.
 4. Write `plan.md`
 5. **⚠️ 检查点：standard/deep 级别必须将 plan.md 展示给用户确认后再 spawn Scouts**（quick 可跳过）
 
@@ -144,6 +146,8 @@ Spawn Scout sub-agents in parallel (`sessions_spawn`, `mode="run"`, `cleanup="de
 Each Scout produces:
 - `sources/{nn}-{dimension-slug}.md` — structured findings
 - Appends to `evidence.jsonl` — one JSON line per key evidence item (schema in `references/evidence-schema.md`)
+
+When a Scout uses reviewed social-source packets, it must preserve the original post URL, capture time, account handle, platform, and packet source in the evidence record. Follow `references/social-source-packets.md`.
 
 Collection is complete when all Scouts return and `sources/` has the expected files.
 
