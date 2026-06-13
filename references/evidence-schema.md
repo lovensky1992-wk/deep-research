@@ -51,3 +51,22 @@
 - Scout Agent 搜索到关键信息时，追加到 `evidence.jsonl`
 - 合成阶段读取 `evidence.jsonl` 做交叉核对
 - 最终报告的 [N] 引用对应 evidence 中的 id
+
+## 社交来源补充字段
+
+当证据来自已审阅的 X/Twitter、Reddit、论坛或其他社交平台导出时，继续使用
+上面的通用字段，并在 `tags` 或扩展字段中保留这些信息：
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| platform | string | `x`, `reddit`, `forum`, or another platform slug |
+| account_handle | string | Public account handle or author name when visible |
+| capture_source | string | Tool or workflow that captured the packet, such as `tweetclaw`, `manual-export`, or `api-export` |
+| capture_time | string | ISO 8601 timestamp from the packet or collection run |
+| engagement | object | Optional public counts, for context only |
+
+Do not treat social volume, likes, reposts, or replies as market truth by itself.
+Use social evidence to represent public claims, sentiment examples, or community
+signals that still need cross-source verification.
+
+See `references/social-source-packets.md` for normalization rules and an example.
